@@ -1,17 +1,16 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class ManagerDemons : MonoBehaviour
-{
-    InterfaceDemon[] demons = new InterfaceDemon[10];
+public class ManagerDemons : MonoBehaviour {
+    private InterfaceDemon[] demons = new InterfaceDemon[10];
     public GameObject[] models;
     public TMP_Text nameText;
     public TMP_Text descriptionText;
     public TMP_Text legionNumText;
+    public TMP_Text extrasText;
     private int currentDemon = 0;
 
-    private void Start()
-    {
+    private void Start() {
         demons[0] = new InterfaceDemon("Rey Bael", "El primer Rey del Infierno",
             66, "Sur", "Sol", "Oro", "Fuego");
         demons[1] = new InterfaceDemon("Duque  Agares", "Puede  ayudar a  los  fugitivos  a  escapar  y  enseña expresiones inmorales, además de acabar con la dignidad de alguien.",
@@ -36,31 +35,27 @@ public class ManagerDemons : MonoBehaviour
         SetInfo(currentDemon);
     }
 
-    public void next()
-    {
+    public void next() {
         currentDemon++;
         SetInfo(currentDemon);
     }
 
-    public void previous()
-    {
+    public void previous() {
         currentDemon--;
         SetInfo(currentDemon);
     }
 
-    private void SetInfo(int index)
-    {
+    private void SetInfo(int index) {
         nameText.text = demons[index].Name;
         descriptionText.text = demons[index].Description;
         legionNumText.text = demons[index].Legions.ToString();
+        extrasText.text = "Direction: " + demons[index].Direction + " Planet: " + demons[index].Planet + " Metal " + demons[index].Metal + " Element " + demons[index].Element;
         turnOffModels();
         models[index].SetActive(true);
     }
 
-    private void turnOffModels()
-    {
-        foreach(GameObject model in models)
-        {
+    private void turnOffModels() {
+        foreach (GameObject model in models) {
             model.SetActive(false);
         }
     }

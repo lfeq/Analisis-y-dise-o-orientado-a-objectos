@@ -1,5 +1,5 @@
-﻿public abstract class Demons
-{
+﻿public abstract class Demons {
+
     public abstract void PowerUp();
 
     public abstract string GetName();
@@ -10,9 +10,11 @@
 public class InterfaceDemon : Demons {
     private string name;
     private string description;
+
     //private Sprite icon;
     //private Sprite sello;
     private int legions;
+
     private string direction;
     private string planet;
     private string metal;
