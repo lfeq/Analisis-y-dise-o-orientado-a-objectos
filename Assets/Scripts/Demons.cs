@@ -10,20 +10,16 @@
 public class InterfaceDemon : Demons {
     private string name;
     private string description;
-
-    //private Sprite icon;
-    //private Sprite sello;
     private int legions;
-
     private string direction;
     private string planet;
     private string metal;
     private string element;
 
-    public InterfaceDemon(string name, string description, int legiones, string direction, string planet, string metal, string element) {
+    public InterfaceDemon(string name, string description, int legions, string direction, string planet, string metal, string element) {
         this.name = name;
         this.description = description;
-        this.legions = legiones;
+        this.legions = legions;
         this.direction = direction;
         this.planet = planet;
         this.metal = metal;
