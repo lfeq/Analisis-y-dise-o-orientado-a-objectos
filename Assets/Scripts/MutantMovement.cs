@@ -12,14 +12,17 @@ public class MutantMovement : MonoBehaviour
     private int itPositions;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GameObject contentTarget = GameObject.Find("ContentTarget");
         for(int i = 0; i < contentTarget.transform.childCount; i++) {
             target.Add(contentTarget.transform.GetChild(i).transform);
         }
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();  
+    }
+
+    void OnEnable() {
         ShuffleArray.Shuffle(target);
         itPositions = 0;
         anim.SetBool("IsWalking", true);
