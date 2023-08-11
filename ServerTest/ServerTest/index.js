@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 const serverIp = process.env.SERVER_IP || 'localhost';
+console.log(process.env.SERVER_IP);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -14,18 +15,18 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.use(cors);
+app.use(cors());
 
 app.disable('x-powered-by');
 
 app.set('port', port);
 
-server.listen(3000, serverIp, function(){
+server.listen(3000, '192.168.68.71', function(){
     console.log('ESTA VIVOOOOOOOOOOOO!!!!!! ' + process.pid + ' Iniciada...')
 });
 
 app.get('/', (req, res) => {
-    res.send('ruta raiz del backend');
+    res.send('Soy lorenz');
 });
 
 app.use((err, req, res, next) => {
