@@ -142,6 +142,7 @@ web_modules/
 
 # Output of 'npm pack'
 *.tgz
+!com.ptc.vuforia.engine-10.16.5.tgz
 
 # Yarn Integrity file
 .yarn-integrity
