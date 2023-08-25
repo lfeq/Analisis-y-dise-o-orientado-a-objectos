@@ -4,9 +4,9 @@ const http = require('http');
 const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
+const demonRoutes = require('./routes/demonRoutes');
 
 const port = process.env.PORT || 3000;
-const serverIp = process.env.SERVER_IP || 'localhost';
 console.log(process.env.SERVER_IP);
 
 app.use(logger('dev'));
@@ -16,16 +16,17 @@ app.use(express.urlencoded({
 }));
 
 app.use(cors());
+demonRoutes(app);
 
 app.disable('x-powered-by');
 
 app.set('port', port);
-server.listen(3000, '172.102.0.63', function(){
+server.listen(3000, '192.168.68.81', function(){
     console.log('ESTA VIVOOOOOOOOOOOO!!!!!! ' + process.pid + ' Iniciada...')
 });
 
 app.get('/', (req, res) => {
-    res.send('Soy lorenz');
+    res.send('Soy Fan de MH');
 });
 
 app.use((err, req, res, next) => {

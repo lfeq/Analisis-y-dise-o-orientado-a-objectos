@@ -1,4 +1,4 @@
-const db = require('..config/config');
+const db = require('../config/config');
 
 const Demon ={};
 
@@ -11,9 +11,7 @@ Demon.create = (demon, result) => {
             material,
             model
         )
-        VALUES(
-            Baphy, Capricornio, Peluche, 123
-        )
+        VALUES(?, ?, ?, ?)
     `;
 
     db.query(
