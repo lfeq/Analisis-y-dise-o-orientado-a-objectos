@@ -2,35 +2,21 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class Example : MonoBehaviour {
+public class WebRequest : MonoBehaviour {
 
-    private void Start() {
-        // A correct website page.
-        StartCoroutine(GetRequest("https://www.example.com"));
-
-        // A non-existing page.
-        StartCoroutine(GetRequest("https://error.html"));
+    void Start() {
+        StartCoroutine(Upload());
     }
 
-    private IEnumerator GetRequest(string uri) {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri)) {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+    IEnumerator Upload() {
+        using (UnityWebRequest www = UnityWebRequest.Post("http://172.102.0.63:3000/api/demon/create", "{ \"demon_name\": \"Baphy\", \"zodiac\": \"Capricornio 3\", \"material\": \"Peluche \", \"model\": \"123213243 \"}", "application/json")) {
+            yield return www.SendWebRequest();
 
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result) {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    break;
+            if (www.result != UnityWebRequest.Result.Success) {
+                Debug.Log(www.error);
+            }
+            else {
+                Debug.Log("Form upload complete!");
             }
         }
     }
