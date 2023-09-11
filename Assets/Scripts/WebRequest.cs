@@ -1,21 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using System.IO;
+using System.Text;
+using System;
 
 public class WebRequest : MonoBehaviour {
+    public GameObject modelToSave;
+    public string modelPath = "Assets/Models/"; // Ruta donde se guardará el archivo.
 
-    void Start() {
-        StartCoroutine(Upload());
+    private void Start() {
+        byte[] modelData = File.ReadAllBytes(modelPath);
+        string byteString = "";
+
+        foreach (byte b in modelData) {
+            byteString += b.ToString();
+        }
+
+        print(byteString);
+        string hola = Encoding.UTF8.GetString(modelData);
+        print(hola);
     }
 
-    IEnumerator Upload() {
+    private IEnumerator Upload() {
         using (UnityWebRequest www = UnityWebRequest.Post("http://172.102.0.63:3000/api/demon/create", "{ \"demon_name\": \"Baphy\", \"zodiac\": \"Capricornio 3\", \"material\": \"Peluche \", \"model\": \"123213243 \"}", "application/json")) {
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success) {
                 Debug.Log(www.error);
-            }
-            else {
+            } else {
                 Debug.Log("Form upload complete!");
             }
         }
