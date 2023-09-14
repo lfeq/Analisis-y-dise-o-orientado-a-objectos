@@ -5,7 +5,7 @@ const Demon ={};
 Demon.create = (demon, result) => {
     const sql = `
     INSERT INTO
-        demons_table(
+        demons(
             demon_name,
             zodiac,
             material,

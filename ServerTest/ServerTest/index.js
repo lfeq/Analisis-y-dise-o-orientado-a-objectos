@@ -5,6 +5,8 @@ const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
 const demonRoutes = require('./routes/demonRoutes');
+const multer = require('multer');
+const path = require('path');
 
 const port = process.env.PORT || 3000;
 console.log(process.env.SERVER_IP);
@@ -21,7 +23,7 @@ demonRoutes(app);
 app.disable('x-powered-by');
 
 app.set('port', port);
-server.listen(3000, '172.102.0.63', function(){
+server.listen(3000, '192.168.68.82', function(){
     console.log('ESTA VIVOOOOOOOOOOOO!!!!!! ' + process.pid + ' Iniciada...')
 });
 
